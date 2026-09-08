@@ -1,0 +1,64 @@
+{
+  "configuration_file": "/path/to/rsoamp/r1_m6_mapped_rescue_20260905/input/config.json",
+  "revision": "/path/to/rsoamp/revision_R1_20260902",
+  "genome": "/path/to/rsoamp/data/genome.fa",
+  "hmm_models": "/path/to/rsoamp/data/hmm/AMP_models.hmm",
+  "tools": {
+    "python": "/path/to/user-home/tools/miniconda3/envs/genome_annot/bin/python",
+    "STAR": "/path/to/user-home/tools/miniconda3/envs/as_splice/bin/STAR",
+    "samtools": "/path/to/user-home/tools/miniconda3/envs/as_splice/bin/samtools",
+    "stringtie": "/path/to/user-home/tools/miniconda3/envs/genome_annot/bin/stringtie",
+    "gffread": "/path/to/user-home/tools/miniconda3/envs/commom_tools2/bin/gffread",
+    "gffcompare": "/path/to/user-home/tools/miniconda3/envs/genome_annot/bin/gffcompare",
+    "diamond": "/path/to/user-home/tools/miniconda3/envs/cotton/bin/diamond",
+    "hmmsearch": "/path/to/user-home/tools/miniconda3/envs/cotton/bin/hmmsearch",
+    "getorf": "/path/to/user-home/tools/miniconda3/envs/cotton/bin/getorf"
+  },
+  "samples": [
+    {
+      "run": "SRR27540881",
+      "treatment": "CK",
+      "replicate": 1
+    },
+    {
+      "run": "SRR27540880",
+      "treatment": "CK",
+      "replicate": 2
+    },
+    {
+      "run": "SRR27540879",
+      "treatment": "CK",
+      "replicate": 3
+    },
+    {
+      "run": "SRR27540878",
+      "treatment": "S200",
+      "replicate": 1
+    },
+    {
+      "run": "SRR27540877",
+      "treatment": "S200",
+      "replicate": 2
+    },
+    {
+      "run": "SRR27540876",
+      "treatment": "S200",
+      "replicate": 3
+    },
+    {
+      "run": "SRR27540875",
+      "treatment": "S400",
+      "replicate": 1
+    },
+    {
+      "run": "SRR27540884",
+      "treatment": "S400",
+      "replicate": 2
+    },
+    {
+      "run": "SRR27540883",
+      "treatment": "S400",
+      "replicate": 3
+    }
+  ]
+}

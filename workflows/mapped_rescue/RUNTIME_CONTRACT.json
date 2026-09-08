@@ -1,0 +1,9 @@
+{
+  "controller": "Snakemake 9.23.1 via existing remote Host PATH; selection required",
+  "executor": "local process on genes_rsoamp_253",
+  "task_runtime": "existing absolute software paths; no installation; dependencies are not fully lock-backed",
+  "dependencies": ["Python with pysam, Biopython, gffutils", "STAR 2.7.11b", "samtools 1.23.1", "StringTie 2.2.3", "gffread", "gffcompare", "DIAMOND 2.2.1", "HMMER3", "EMBOSS getorf", "nice", "zcat"],
+  "resources": {"max_cores": 8, "nice": 10, "one_alignment_at_a_time": true, "estimated_peak_memory_mb": 48000},
+  "outputs": "relative results; frozen inputs and configuration outside immutable source",
+  "scope": "genome-mapped transcriptome-unassigned candidate discovery, not DE or validated novel genes"
+}

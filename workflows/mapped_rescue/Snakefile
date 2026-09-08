@@ -1,0 +1,53 @@
+from pathlib import Path
+
+RUNNER = str(Path(workflow.basedir) / "run_stage.py")
+CFG = config["configuration_file"]
+PYTHON = config["tools"]["python"]
+SAMPLES = [r["run"] for r in config["samples"]]
+assert len(SAMPLES) == 9 and len(set(SAMPLES)) == 9
+
+rule all:
+    input: "results/FOCUSED_DISCOVERY_COMPLETE.PASS"
+
+rule prepare:
+    output: "results/prepare.PASS"
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} prepare --config {CFG:q} --threads {threads}"
+
+rule extract:
+    input: "results/prepare.PASS"
+    output:
+        marker="results/extract.PASS",
+        pairs=expand("results/reads/{run}_{mate}.fastq.gz", run=SAMPLES, mate=[1,2])
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} extract --config {CFG:q} --threads {threads}"
+
+rule align:
+    input:
+        marker="results/extract.PASS",
+        r1="results/reads/{run}_1.fastq.gz",
+        r2="results/reads/{run}_2.fastq.gz"
+    output:
+        marker="results/align/{run}/align.PASS",
+        bam="results/align/{run}/Aligned.sortedByCoord.out.bam",
+        bai="results/align/{run}/Aligned.sortedByCoord.out.bam.bai"
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} align --run {wildcards.run:q} --config {CFG:q} --threads {threads}"
+
+rule assemble:
+    input: "results/align/{run}/align.PASS"
+    output: "results/assembly/{run}.gtf"
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} assemble --run {wildcards.run:q} --config {CFG:q} --threads {threads}"
+
+rule screen:
+    input: expand("results/assembly/{run}.gtf", run=SAMPLES)
+    output: "results/screen.PASS"
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} screen --config {CFG:q} --threads {threads}"
+
+rule evidence:
+    input: "results/screen.PASS"
+    output: "results/FOCUSED_DISCOVERY_COMPLETE.PASS"
+    threads: 8
+    shell: "{PYTHON:q} {RUNNER:q} evidence --config {CFG:q} --threads {threads}"
