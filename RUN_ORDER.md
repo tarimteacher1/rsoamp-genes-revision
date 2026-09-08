@@ -1,3 +1,7 @@
+## Promoter update: use the v2 module
+
+See [R1M8_PROMOTER_README.md](R1M8_PROMOTER_README.md). The old audit_promoters.py and old archive retain historical results; use audit_promoters_v2.py for the latest promoter analysis. All three predefined comparisons remained non-significant. The 63-gene input has not been frozen for all subsequent M2/M6 work.
+
 # Workflow order and setup
 
 ## Before running

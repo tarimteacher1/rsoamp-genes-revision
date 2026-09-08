@@ -1,3 +1,5 @@
+> **Promoter update (2026-09-08):** The latest promoter analysis is in [R1M8_PROMOTER_README.md](R1M8_PROMOTER_README.md) and [R1M8_promoter_revision_20260908.zip](R1M8_promoter_revision_20260908.zip). It supersedes the historical promoter module below: 15 double-stranded patterns, full-genome interval rescan, symmetric QC and UTR sensitivity checks. No enrichment in any predefined scenario. Other modules retain the version boundaries described below.
+
 # R. soongarica AMP analysis code — Genes revision
 
 Research code and selected processed outputs for the identification, curation,
