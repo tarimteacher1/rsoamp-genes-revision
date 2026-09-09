@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED_AND_LOCALLY_VERIFIED",
+  "publication_completed": false,
+  "baseline_commit": "4734dc35bcb3b90c6c115758f08d126c3fdf468a",
+  "baseline_README_SHA256": "b96ab352539f49726970a9c169e57809a7fb8ba94eac976fc8383feb588d7286",
+  "baseline_manifest_SHA256": "cd9eff6c12a6f465aa68230d9ee1833685edcf316f5f5570163cd30b54939432",
+  "archive": "RsoAMP_author_figures3_7_final_20260909.zip",
+  "archive_bytes": 2137405,
+  "archive_sha256": "92b14326591d9a1cca30c8de09914c0b6d74f0d0d8d90e810885df91a43f1ac7",
+  "archive_members": 13,
+  "all_archive_members_checked": true,
+  "Figure3_and_Figure7_PDFs_match_final_author_sources": true,
+  "Figure7_SVG_matches_current_NonDE_PDF": true,
+  "SVG_conversion_version": "1.27.2",
+  "old_public_assets_modified": false,
+  "promoter14_statistics_changed": false,
+  "private_paths_or_credentials_included": false
+}

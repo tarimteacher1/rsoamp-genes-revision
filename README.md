@@ -1,3 +1,5 @@
+> **Latest author figure formats (2026-09-09):** [Final Figure 3 and Figure 7](AUTHOR_FIGURE_UPDATE_20260909.md) provides the final author PDF/PNG/outlined-SVG layouts. This presentation-only update leaves the [14-pattern promoter amendment](PROMOTER14_UPDATE_20260909.md) and all numerical results unchanged.
+
 > **Current analysis amendment (2026-09-09):** [The 14-pattern promoter and Figure 7 update](PROMOTER14_UPDATE_20260909.md) supersedes the earlier 15-pattern Figure 5/tables and supplies the current author Figure 7 with **Non-DE**. Retained counts and raw P values are unchanged; BH correction now uses 14/42 tests, with no significant enrichment. Read the fixed release below together with this amendment and the preceding reader-label update; archived releases are unchanged.
 
 > **Current figure and reader-label amendment (2026-09-09):** See [the presentation update](READER_LABEL_UPDATE_20260909.md) for current A/R model-source labels, author figure layouts, explanatory table labels and portable plotting edits. The fixed scientific release below remains unchanged.
