@@ -1,0 +1,12 @@
+{
+  "status": "LOCAL_PATCH_VERIFIED",
+  "archive_sha256": "c72990d0d0dd34c25cc3729b5fe9480f32bc0195190570f5780d230b342d4191",
+  "archive_bytes": 12348103,
+  "archive_files": 46,
+  "manifest_items": 45,
+  "private_path_or_secret_scan": "PASS",
+  "python_syntax": "PASS",
+  "base_commit": "7593467f6fc8a81fe3c7440ecc857f7677ac1991",
+  "scientific_analyses_rerun": false,
+  "anonymous_download_verification": "performed after publication"
+}
