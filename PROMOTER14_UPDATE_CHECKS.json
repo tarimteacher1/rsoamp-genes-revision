@@ -1,0 +1,23 @@
+{
+  "status": "PREPARED_AND_LOCALLY_VERIFIED",
+  "publication_completed": false,
+  "baseline_public_commit": "74083a22f652b4db0948ccedd5eaf2be0a7ee555",
+  "baseline_manifest_sha256": "5fddd6699daf715f49f0224604d4ad850729cb711d541423926ee15c6cefaf7f",
+  "preceding_reader_files_anonymously_verified": true,
+  "patch_zip": "RsoAMP_promoter14_figure7_20260909.zip",
+  "patch_zip_bytes": 7767971,
+  "patch_zip_sha256": "f187528288bb07571fa30e9ca3dedabe08d1043aacd7cc074a9f3500b8cf0738",
+  "archive_members": 76,
+  "every_archive_member_verified": true,
+  "all_upload_files_below_25_MB": true,
+  "patterns": 14,
+  "BH_tests_per_scenario": 14,
+  "joint_BH_tests": 42,
+  "retained_counts_unchanged": 305172,
+  "raw_P_values_unchanged": 42,
+  "significant_patterns": 0,
+  "Figure7_PDF_contains_NonDE": true,
+  "Figure7_numerical_results_changed": false,
+  "previous_release_modified": false,
+  "private_paths_or_credentials_found": false
+}
