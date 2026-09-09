@@ -1,0 +1,17 @@
+{
+  "snapshot": "2026-09-08 promoter v2",
+  "scope": "All promoter sequences rescanned; other modules preserve prior validation scope.",
+  "validation": {
+    "all_genes": 21791,
+    "literal_string_search_counts_checked": 326865,
+    "count_mismatches": 0,
+    "all_sequence_hashes_checked": true,
+    "scenario_tests_checked": 45,
+    "maximum_independent_fisher_p_error": 3.0978553056115743e-12,
+    "BH_checked": true,
+    "cohort_rules_checked": true,
+    "status": "PASS"
+  },
+  "promoter_archive_sha256": "79762bf14a5271a5714988c91019ceb0d672fcaa40c2ac419a132cef81bf59d2",
+  "historical_archive_retained": true
+}

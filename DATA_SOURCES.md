@@ -1,3 +1,24 @@
+# Data sources for the current 2026-09-09 revision
+
+Current module records and release provenance take precedence over dated historical
+scope statements. Original-source accessions and checksums are retained with each
+module in the public bundle.
+
+- R. soongarica genome/annotation: Figshare 10.6084/m9.figshare.25533064.v2 and
+  GenBank JBEBFM000000000; RNA-seq/Iso-Seq PRJNA1063761, SRR27540875–SRR27540884.
+- T. austromongolica genome: GCA_039764185.1 and Figshare 10.6084/m9.figshare.25106726.
+- T. chinensis genome/annotation: GigaDB 10.5524/102417. RNA-seq PRJNA855335;
+  six selected runs SRR19973985/986/987/991/993/994 are documented individually in S7.
+- Source gene/transcript identifiers, official-CDS reference checks, selected
+  isoforms, software versions, original-call excerpts and reporting thresholds are
+  preserved in S6–S9 and EXECUTION_PROVENANCE_20260909.json.
+
+Private execution prefixes are illustrative placeholders. Full raw reads, software
+installations and compiled third-party databases are not bundled. Obtain them from
+the documented sources; retain their provider terms and version identifiers.
+
+## Historical source note
+
 # Public data and dependency sources
 
 - *R. soongarica* genome paper: https://doi.org/10.1038/s41597-024-03644-y

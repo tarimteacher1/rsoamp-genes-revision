@@ -1,68 +1,31 @@
-## Promoter update: use the v2 module
+# Current run order and reproducibility scope
 
-See [R1M8_PROMOTER_README.md](R1M8_PROMOTER_README.md). The old audit_promoters.py and old archive retain historical results; use audit_promoters_v2.py for the latest promoter analysis. All three predefined comparisons remained non-significant. The 63-gene input has not been frozen for all subsequent M2/M6 work.
+1. Download `RsoAMP_current_sources_and_evidence_20260909.zip` from [release revision-20260909](https://github.com/tarimteacher1/rsoamp-genes-revision/releases/tag/revision-20260909) and extract it into one directory.
+2. Run `python verify_public_release.py` from that directory. It verifies the public
+   file manifest using only the Python standard library.
+3. To recount the existing paired-expression results, run
+   `python modules/S9/verify_reported_counts.py`.
+   This checks 16 eligible / 12 usable pairs per comparison, 3/4 jointly-DE pairs,
+   and 6/9 same-sign effects at S200/S400. It is output verification, not a sequence search.
+4. Consult the module README, execution records and source index before any
+   scientific rerun. Configure `/path/to/...`, `${PAIRING_ROOT}`, `${EXPRESSION_ROOT}`,
+   `${RSO_PROJECT}` and `${CONDA_ENVS}` for the local inputs and tools. Obtain the
+   public assemblies, annotations, reads and third-party dependencies by their
+   recorded source accessions; large raw reads, BAMs and installed databases are
+   not redistributed. Existing paths do not imply a turnkey Windows workflow.
+5. Use the earlier File S1 snapshot for the original genome/RNA-seq pipeline, then
+   the versioned S6/S8 source code for catalogue reconciliation/current figures.
+   Use S7 for T. chinensis RNA-seq and S9 for the existing candidate-pair comparison.
+   The recovered S9 execution excerpts document the original order/settings and
+   must not be relabelled as new analysis or unlimited-hit searches.
 
-# Workflow order and setup
+The code-only archive preserves relative module paths but does not include the
+input data needed to execute analysis or plotting scripts. Use the complete bundle
+for inspecting and verifying the retained results. No rerun of raw-read alignment,
+phylogenetic inference or sequence searching was performed during publication.
 
-## Before running
-
-Unzip `RsoAMP_reproducibility_20260908.zip`. Its root contains `scripts/`, `results/`,
-`current_phylogeny/`, `workflows/` and the supporting documentation.
-
-Use Linux for the Bash and external bioinformatics workflows. Python scripts use
-Python 3; dependencies vary by module (including Biopython, NumPy, pandas,
-matplotlib and pysam). R modules use tximport and DESeq2. External tools include
-STAR, Salmon, StringTie, gffread/gffcompare, HMMER, DIAMOND/BLAST, MAFFT, trimAl,
-IQ-TREE, MCScanX, DeepSig, TMbed and PredGPI. Check the scripts you intend to run
-and the recorded software inventory; not every dependency is needed for every step.
-
-Replace `/path/to/rsoamp`, `/path/to/user-home` and any remaining illustrative
-paths with your input/work directories and installed tool locations. Original
-scripts often expect `revision_R1_20260902/<module>`; the packaged module outputs
-are under `results/<module>`. Choose a new working copy and adapt `REVISION`,
-`PROJECT`, command-line arguments and tool paths as each script supports them.
-Do not run analysis directly against the retained source snapshot.
-
-## Main workflow
-
-| Order | Module | Main entry points |
-| --- | --- | --- |
-| 1 | Public input and read integrity | `download_verify_rnaseq.sh`, `download_verify_isoseq.sh`, `run_fastp_qc.sh` |
-| 2 | Family curation | `build_nsltp_evidence.py`, `build_curated_nsltp_reference.py`, `finalize_nsltp_catalogue.py` |
-| 3 | Four-strategy phylogeny | `prepare_phylogeny_inputs.py`, `run_phylogeny_sensitivity.sh`, `summarize_phylogeny_sensitivity.R` |
-| 4 | Historical backfill and catalogue | `audit_backfill_loci.py`, `evaluate_isoseq_gene_models.py`, `audit_genome_wide_rescue.py`, `build_final_amp_catalogue.py` |
-| 5 | Genome mapping and unassigned reads | `align_rnaseq_genome.sh`, `run_unmapped_read_classification.sh`, `run_unmapped_amp_search.sh` |
-| 6 | Comparative genomics | `build_tamarix_amp_evidence.py`, `run_tamarix_nsltp_recuration.sh`, `run_rso_tamarix_mcscanx.sh`, `build_comparative_outputs.py` |
-| 7 | Expression | `run_salmon_requant.sh`, `run_expression_deseq2.R`, `audit_expression_prefilter.R`, `finalize_expression_catalogue.py` |
-| 8 | Promoter and Ka/Ks audits | `audit_promoters.py`, `audit_kaks.py` |
-| 9 | Figures and tables | `plot_revision_*.py`, `build_supplementary_workbook.mjs`; latest tree displays: `build_key_clade_figures.py` |
-
-Historical result/command records describe what was run. This table is an index,
-not a substitute for input preparation or evidence that the family rules are settled.
-The expression correction is detailed in `EXPRESSION_STATUS_CORRECTION_20260904.md`.
-
-## Later mapped-read supplement
-
-`workflows/mapped_rescue/Snakefile` calls `run_stage.py` for preparation, extraction,
-STAR mapping, assembly, screening and evidence aggregation. Adapt
-`config.example.json`, including its `configuration_file` field. Run Snakemake
-from a new run directory using that absolute config and Snakefile path.
-The source/config directory and the output run directory should be distinct.
-
-Then follow the dependent modules `full_read_validation`, `overlap_family_audit`
-and `recursive_family_audit`. Their shell scripts declare input and output paths
-near the top. These workflows require large external inputs absent from this
-repository. Later candidate evidence is not integrated into the September 4 catalogue.
-
-## Small verification without research data
-
-From the extracted package root:
-
-```bash
-python workflows/mapped_rescue/test_contract.py
-python verify_manifest.py
-```
-
-The first command uses synthetic data to check read pairing, interval and ORF
-logic. The second verifies the files shipped in this snapshot. Neither command
-tests the full biological workflow or independently validates the scientific claims.
+Historical module checksums and PASS records describe their dated source files.
+Public path normalization changes some byte hashes. The root
+MANIFEST_SHA256_PUBLIC.tsv is authoritative for this release; S9's local manifest
+was refreshed for its released files. It is expected that PREPUBLICATION checksums
+do not match path-normalized bytes.

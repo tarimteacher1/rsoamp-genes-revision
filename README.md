@@ -1,46 +1,75 @@
-> **Promoter update (2026-09-08):** The latest promoter analysis is in [R1M8_PROMOTER_README.md](R1M8_PROMOTER_README.md) and [R1M8_promoter_revision_20260908.zip](R1M8_promoter_revision_20260908.zip). It supersedes the historical promoter module below: 15 double-stranded patterns, full-genome interval rescan, symmetric QC and UTR sensitivity checks. No enrichment in any predefined scenario. Other modules retain the version boundaries described below.
+# R. soongarica AMP-family research: current revision
 
-# R. soongarica AMP analysis code — Genes revision
+Current public revision: **2026-09-09**, tag **revision-20260909**.
 
-Research code and selected processed outputs for the identification, curation,
-phylogenetic analysis, comparative genomics and expression analysis of
-*Reaumuria soongarica* AMP-family candidates.
+[Download the versioned release](https://github.com/tarimteacher1/rsoamp-genes-revision/releases/tag/revision-20260909) for the current scientific code,
+processed evidence, source figures, Tables S1–S50 and recovered execution records.
+The 2026-09-08 files and original `scripts/` / `workflows/` are historical sources;
+their earlier catalogue status must not be read as the current result.
 
-**Snapshot: 2026-09-08. This is a revision-stage research snapshot.**
-Read [STATUS.md](STATUS.md) before interpreting the catalogues or candidate calls.
+## Downloads
 
-## Start here
+- [Complete current source and evidence bundle](https://github.com/tarimteacher1/rsoamp-genes-revision/releases/download/revision-20260909/RsoAMP_current_sources_and_evidence_20260909.zip)
+- [Current code only](https://github.com/tarimteacher1/rsoamp-genes-revision/releases/download/revision-20260909/RsoAMP_current_code_20260909.zip) (data and model outputs are in the complete bundle)
+- [Current source index](https://github.com/tarimteacher1/rsoamp-genes-revision/blob/revision-20260909/PUBLIC_SOURCE_INDEX_20260909.tsv)
+- [Release checksums](https://github.com/tarimteacher1/rsoamp-genes-revision/blob/revision-20260909/RELEASE_SHA256_20260909.tsv)
+- [Execution provenance](EXECUTION_PROVENANCE_20260909.json)
+- [Run order and scope](RUN_ORDER.md)
 
-- [RUN_ORDER.md](RUN_ORDER.md): workflow order, path adaptation and a small verification command.
-- [scripts/](scripts/): analysis and plotting scripts underlying the current working manuscript.
-- [workflows/](workflows/): later mapped-read discovery and full-read/family follow-up workflows.
-- [DATA_SOURCES.md](DATA_SOURCES.md): public input accessions and dependency records.
-- `RsoAMP_reproducibility_20260908.zip`: downloadable scripts, selected processed results,
-  decision tables, original ML trees, current display trees and source-version records.
-- `MANIFEST_SHA256.tsv`: checksums for the files in this repository.
+## Current scientific scope
 
-The working catalogue in the September 4 package contains 63 annotated genes:
-9 defensins, 18 Snakin/GASA and 36 canonical nsLTPs (27 core and 9 predicted LTPg).
-All 63 have TPM records; 49 pass the expression prefilter. The six historical
-genome-backfilled ORFs are outside this primary catalogue.
+The primary R. soongarica catalogue contains 73 computational candidates:
+15 defensins, 18 Snakin/GASA and 40 nsLTPs. RsLTP20 is a separate,
+reference-dependent C4-like extended candidate. Seven reconstructed models are
+distinct from six historical incomplete backfills. The current four-strategy
+phylogenetic analysis reports six supported local groups, without a complete
+formal subfamily classification. The 66 members represented in the original
+RNA-seq reference yield 18 DE calls at S400 versus CK; seven reconstructed models
+remain unquantified in that reference.
 
-The release adds the subsequent mapped/unassigned-read and full-read validation
-workflow sources. Those candidate outputs have not yet been incorporated into a
-final frozen catalogue. Computational evidence does not establish peptide activity;
-independent qRT-PCR and peptide activity assays are not supplied.
+The T. austromongolica comparison uses 73/38 primary candidates, 27 reciprocal
+best-hit pairs and 25 direct candidate pairs in the existing genomic-anchor
+reference. The separate T. chinensis expression comparison uses a historical
+63-query subset and an official-CDS-derived reference. Twenty pairs pass the
+retained-hit/forward-coverage rules; 16 also have collinearity support. Each
+contrast has 12 pairs with usable statistics in both studies. Four unique pairs
+contribute seven concordantly upregulated, jointly significant comparison rows;
+three pairs remain under the additional reverse-coverage rule. RsLTP17 is
+coverage-sensitive. These results do not establish strict one-to-one orthology,
+conserved function, an ecological-group trend or a between-species treatment effect.
 
-## Reproduction scope
+## What was recovered in this release
 
-This repository documents the research execution history. It is not a turnkey
-installation or a claim that every analysis was rerun during publication preparation.
-Large public reads, genome assemblies, BAM files, indices, installed software,
-third-party databases, manuscripts and reviewer correspondence are excluded.
-Historical absolute project and home paths were replaced with `/path/to/...`
-placeholders, and text line endings were normalized. Scientific algorithms and
-thresholds were not changed for this publication. Configure the paths and obtain
-the external inputs before a scientific rerun.
+The original successful v2 BLAST calls were recovered from retained execution
+records: forward/reverse `-max_target_seqs 20/5`, `-evalue 1e-5`, `-seg yes`,
+`-comp_based_stats 2`, eight threads and the standard 12 reported columns.
+The recorded outputs contain 325/151 rows and match the archived result hashes.
+Highest-score uniqueness remains restricted to retained hits. The MCScanX
+invocation and successful completion record were also recovered. The executable
+path is linked to Bioconda mcscanx 1.0.0 build h9948957_0 by the installed package,
+binary hash and installation chronology; this is not a version printout or binary
+digest collected during the original run. Recovery did not rerun the analyses.
 
-See [LICENSE_NOTICE.md](LICENSE_NOTICE.md) for the current permission status.
-For citation in the manuscript or response letter, use this repository's actual
-URL together with the specific Git commit and the snapshot date. No DOI is assigned
-by this package.
+## Package boundaries
+
+Modules S2–S5 preserve the earlier outgroup, comparative, model-evidence and
+localization resources. S6 contains the unified catalogue evidence. S7 contains
+the independent T. chinensis expression reanalysis and annotation context. S8
+contains the synchronized catalogue analyses and eight main figures. The updated
+S9 contains the supported candidate-pair expression results and recovered
+execution provenance. A small number of dated README/status statements in
+historical modules describe their earlier stage; see STATUS.md for current mapping.
+
+Scientific numeric results and sequence identifiers were not changed to prepare
+the public distribution. Private execution prefixes were replaced with illustrative
+paths. Manuscripts, reviewer correspondence, their document-production helpers,
+compiled database indices and software installations are excluded. These
+publication transformations and excluded files are indexed in the bundle. Source
+tables and analytical/plotting code are retained. Public input accessions and
+external dependencies are documented; this is not a preconfigured installation.
+Use the publication manifest to verify the distributed bytes. PREPUBLICATION
+manifests identify supplied originals before path normalization, not released bytes.
+
+Independent qRT-PCR, peptide activity and causal salt-tolerance validation remain
+absent. Computational support is not experimental validation. The existing
+LICENSE_NOTICE.md continues to apply; no new software license is asserted.

@@ -1,0 +1,268 @@
+{
+  "source_session": "34efa32d-7f56-4d07-9b6e-31b6273844de.jsonl",
+  "source_session_sha256_at_recovery": "e76504856f5b51fec02dac615e420373fccd9ddb9763407a54765419d3ed7e05",
+  "source_prefix_sha256_through_line286": "a8285f617ef961208d463007ba04f802dadb9980475bcfb1a91706b47a607e9b",
+  "historical_calls": [
+    {
+      "source_line": 68,
+      "source_line_sha256": "0680d55a5e267e2c7a952dc5e5dd1ca3c73271574b3f5dfca7de851902adf2fc",
+      "created_utc": "2026-09-09T10:30:12.581Z",
+      "call_id": "call_00_ET_wsrasG7vMjJMT9sJ96MY6098",
+      "tool": "bash",
+      "command": "makeblastdb -in ${RSO_PROJECT}/data/protein.fa -dbtype prot -out blast/rso_db",
+      "result": {
+        "source_line": 69,
+        "source_line_sha256": "938c9ba6e8859c208f05eeef40725bd8f5a67e3ec7fe40d3c8117893e24e40ca",
+        "created_utc": "2026-09-09T10:30:17.187Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "Compound database-building call recorded exit code 0; the relevant Rso database was subsequently reused by the successful v2 reverse search."
+      },
+      "extraction_note": "Only the Rso database-building subcommand is reproduced. The original compound call also built the superseded v1 Tchi database; that unrelated command is omitted."
+    },
+    {
+      "source_line": 210,
+      "source_line_sha256": "2f428b5177f9cfca335a95edd64a8973b178b98a9b38be1876fdfa708ded06bf",
+      "created_utc": "2026-09-09T11:09:36.956Z",
+      "call_id": "call_00_5BmveQv4UJ3dxSlHG5tv8629",
+      "tool": "bash",
+      "command": "cd ${EXPRESSION_ROOT}/reference && ${CONDA_ENVS}/commom_tools2/bin/gffread Tchinensis.gff3 -g Tchinensis.fasta -x Tchinensis.cds_from_GFF.fa -y Tchinensis.protein_from_GFF.fa 2> gffread_cds_protein.log; echo \"exit=$?\"; tail -5 gffread_cds_protein.log; grep -c '>' Tchinensis.cds_from_GFF.fa; grep -c '>' Tchinensis.protein_from_GFF.fa",
+      "result": {
+        "source_line": 211,
+        "source_line_sha256": "fe354e6595e60e89330426926ae63cb7486240882be286554196a5847fbe2a47",
+        "created_utc": "2026-09-09T11:09:41.897Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "exit=0\n46081\n46081\n"
+      }
+    },
+    {
+      "source_line": 224,
+      "source_line_sha256": "b84bcf78f198f629011e2e9eefc74dcc8f436654a8800ecde703c2268b68185a",
+      "created_utc": "2026-09-09T11:10:40.927Z",
+      "call_id": "call_00_ApVtRqkwRmnJ20thC2br5834",
+      "tool": "bash",
+      "command": "cd ${PAIRING_ROOT} && makeblastdb -in ref/Tchinensis.official_per_gene.faa -dbtype prot -out blast/tchin_official_db && blastp -query ref/rso_primary63_queries.faa -db blast/tchin_official_db -evalue 1e-5 -seg yes -comp_based_stats 2 -num_threads 8 -max_target_seqs 20 -outfmt \"6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore\" -out blast/rso63_vs_tchin_official.tsv && wc -l blast/rso63_vs_tchin_official.tsv",
+      "result": {
+        "source_line": 225,
+        "source_line_sha256": "e7bc820849d10edb2948b9b3f195886bb34615dc1ccfd2fee455be2309747142",
+        "created_utc": "2026-09-09T11:10:41.963Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "\n\nBuilding a new DB, current time: 09/09/2026 19:10:40\nNew DB name:   ${PAIRING_ROOT}/blast/tchin_official_db\nNew DB title:  ref/Tchinensis.official_per_gene.faa\nSequence type: Protein\nKeep MBits: T\nMaximum file size: 3000000000B\nAdding sequences from FASTA; added 26426 sequences in 0.541338 seconds.\n\n\n325 blast/rso63_vs_tchin_official.tsv\n"
+      }
+    },
+    {
+      "source_line": 226,
+      "source_line_sha256": "f2d6a436aa59c1d61431de1b04aea09c85af4b3a3e10235d80b04d26a63587e3",
+      "created_utc": "2026-09-09T11:10:47.948Z",
+      "call_id": "call_00_Vtkzr5zouv7q9x0LZJI43313",
+      "tool": "bash",
+      "command": "cd ${PAIRING_ROOT} && cut -f2 blast/rso63_vs_tchin_official.tsv | sort -u > blast/tchin_official_top_hits.txt && wc -l < blast/tchin_official_top_hits.txt && python3 - <<'PY'\nfrom Bio import SeqIO\nwanted = set(open(\"blast/tchin_official_top_hits.txt\").read().split())\nout=[]\nfor rec in SeqIO.parse(\"ref/Tchinensis.official_per_gene.faa\",\"fasta\"):\n    if rec.id in wanted:\n        out.append(rec)\nSeqIO.write(out, \"blast/tchin_official_reverse_queries.faa\",\"fasta\")\nprint(\"written\", len(out))\nPY\nblastp -query blast/tchin_official_reverse_queries.faa -db blast/rso_db -evalue 1e-5 -seg yes -comp_based_stats 2 -num_threads 8 -max_target_seqs 5 -outfmt \"6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore\" -out blast/tchin_official_vs_rso.tsv && wc -l blast/tchin_official_vs_rso.tsv",
+      "result": {
+        "source_line": 227,
+        "source_line_sha256": "cc82954e36ce0035d1b55dfe44afa8f001ab72af16b57675298d4ad781f35eaf",
+        "created_utc": "2026-09-09T11:10:48.647Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "33\nwritten 33\n151 blast/tchin_official_vs_rso.tsv\n"
+      }
+    },
+    {
+      "source_line": 236,
+      "source_line_sha256": "39a6c06744042e418006096e82437d80e62a0175594523537454ed37cc7e7bfe",
+      "created_utc": "2026-09-09T11:11:23.211Z",
+      "call_id": "call_00_ET_jzVU2p2cZ7BGdLcWUnfx7184",
+      "tool": "bash",
+      "command": "cd ${PAIRING_ROOT} && python3 prepare_rso_tch_mcscanx_official.py && cd mcscanx_official && ${CONDA_ENVS}/cotton/bin/diamond makedb --in rso_tch.faa -d rso_tch 2>&1 | tail -1",
+      "result": {
+        "source_line": 237,
+        "source_line_sha256": "582c5d24815b7359142a530df7ae87373c97688f8936a38ec2afbb73c80aba3d",
+        "created_utc": "2026-09-09T11:11:25.045Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "RSO proteins: 21791\nRSO gff rows: 21791\nTCH official proteins: 26426\nTCH gff rows: 26426\ncombined fasta/gff written\n        Total time  0.390000s\n"
+      }
+    },
+    {
+      "source_line": 238,
+      "source_line_sha256": "91d2becaf6d7b73d0ea3df425d89ad5b3c18a0803640a555f805847483764e8a",
+      "created_utc": "2026-09-09T11:11:29.179Z",
+      "call_id": "call_00_ET_nrfrspzBMV2XWtx8VBFt5914",
+      "tool": "bash",
+      "command": "cd ${PAIRING_ROOT}/mcscanx_official && ${CONDA_ENVS}/cotton/bin/diamond blastp -q rso_tch.faa -d rso_tch -o rso_tch.blast --outfmt 6 --evalue 1e-5 --max-target-seqs 10 --threads 32 --sensitive 2> rso_tch_diamond.stderr.log && wc -l rso_tch.blast && ${CONDA_ENVS}/cotton/bin/MCScanX rso_tch 2> rso_tch_mcscanx.stderr.log && ls -la rso_tch.collinearity && echo PASS",
+      "result": {
+        "source_line": 239,
+        "source_line_sha256": "5f8291e0f49f2eadc385c4b00a9b90acbab372c0b3a9b728764eea8841f5cf65",
+        "created_utc": "2026-09-09T11:11:29.187Z",
+        "ok": true,
+        "exit_code": null,
+        "timed_out": null,
+        "truncated": null,
+        "background_task_id": "bash-7b2ffecd-2f9a-4e0f-ac3f-8e2130696af2",
+        "output": "Command running in background with ID: bash-7b2ffecd-2f9a-4e0f-ac3f-8e2130696af2. Stop it with: kill -- -783292 Output is being written to: ${BACKGROUND_LOGS}/bash-7b2ffecd-2f9a-4e0f-ac3f-8e2130696af2.log"
+      }
+    },
+    {
+      "source_line": 256,
+      "source_line_sha256": "0f2cb58b029ba0c7a2dc952258c5d25beecbb799f905ddd7110c43c524a7111e",
+      "created_utc": "2026-09-09T11:12:11.488Z",
+      "call_id": "call_00_lotUhNvG24L7bYcW0wjs9803",
+      "tool": "bash",
+      "command": "sleep 20; cat ${BACKGROUND_LOGS}/bash-7b2ffecd-2f9a-4e0f-ac3f-8e2130696af2.log 2>/dev/null | tail -3; ls -la ${PAIRING_ROOT}/mcscanx_official/ | grep -E \"blast|collinearity\"",
+      "result": {
+        "source_line": 258,
+        "source_line_sha256": "6fb3b701e08b1e9b1a4a52113a4d69ee16d8698e496fb2e463dbb594de07c8f8",
+        "created_utc": "2026-09-09T11:12:31.543Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "Done! [0.576 seconds elapsed]\n-rw-rw-r-- 1 dxy dxy 1266195 9月   9 19:12 rso_tch.collinearity\nPASS\n-rw-rw-r-- 1 dxy dxy 27119463 9月   9 19:12 rso_tch.blast\n-rw-rw-r-- 1 dxy dxy  1266195 9月   9 19:12 rso_tch.collinearity\n"
+      }
+    },
+    {
+      "source_line": 285,
+      "source_line_sha256": "2b004938f7f3979bb8ecd2bd2a2115073bd4f7438c77562354809689594edf38",
+      "created_utc": "2026-09-09T11:14:51.432Z",
+      "call_id": "call_00_8jABX5upfTBZCrVvpKZg3509",
+      "tool": "bash",
+      "command": "cd ${PAIRING_ROOT} && { echo \"gffread: 0.12.7 (v2 official CDS/protein extraction)\"; echo \"blastp: $(blastp -version 2>&1 | head -1)\"; echo \"diamond: $(${CONDA_ENVS}/cotton/bin/diamond --version 2>&1 | head -1)\"; echo \"MCScanX: ${CONDA_ENVS}/cotton/bin/MCScanX (default parameters)\"; echo \"hmmsearch: ${CONDA_ENVS}/busco1/bin/hmmsearch\"; echo \"biopython: $(python3 -c 'import Bio; print(Bio.__version__)')\"; echo \"matplotlib: $(python3 -c 'import matplotlib; print(matplotlib.__version__)')\"; } > software_versions.txt && cat software_versions.txt",
+      "result": {
+        "source_line": 286,
+        "source_line_sha256": "bef0adfaf63e117bfdbb8b97cd7ad84d4b21715825c1241a25e649d8a56b45e5",
+        "created_utc": "2026-09-09T11:15:14.509Z",
+        "ok": true,
+        "exit_code": 0,
+        "timed_out": false,
+        "truncated": false,
+        "background_task_id": null,
+        "output": "gffread: 0.12.7 (v2 official CDS/protein extraction)\nblastp: blastp: 2.17.0+\ndiamond: diamond version 2.2.1\nMCScanX: ${CONDA_ENVS}/cotton/bin/MCScanX (default parameters)\nhmmsearch: ${CONDA_ENVS}/busco1/bin/hmmsearch\nbiopython: 1.87\nmatplotlib: 3.9.4\n"
+      }
+    }
+  ],
+  "MCScanX_completion_notice": {
+    "source_line": 257,
+    "created_utc": "2026-09-09T11:12:22.933Z",
+    "source_line_sha256": "f514fac8008bb61c5f86c9dd2fcfb91739d006673bb75e64ed8da2a946ba4f38",
+    "content": "Background command \"cd ${PAIRING_ROOT}/mcscanx_official && ${CONDA_ENVS}/cotton/bin/diamond blastp -q rso_tch.faa -d rso_tch -o rso_tch.blast --outfmt 6 --evalue 1e-5 --max-target-seqs 10 --threads 32 --sensitive 2> rso_tch_diamond.stderr.log && wc -l rso_tch.blast && ${CONDA_ENVS}/cotton/bin/MCScanX rso_tch 2> rso_tch_mcscanx.stderr.log && ls -la rso_tch.collinearity && echo PASS\" completed with exit code 0 after 54s. Output: ${BACKGROUND_LOGS}/bash-7b2ffecd-2f9a-4e0f-ac3f-8e2130696af2.log"
+  },
+  "MCScanX_installed_build_observation": {
+    "name": "mcscanx",
+    "version": "1.0.0",
+    "build": "h9948957_0",
+    "build_number": 0,
+    "channel": "https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda",
+    "subdir": "linux-64",
+    "url": "https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/linux-64/mcscanx-1.0.0-h9948957_0.tar.bz2",
+    "md5": "4454c5541978adff669437e52d63d38f",
+    "sha256": "5ac133bcef32b884aa2e5f164f28d30bd46374d22a9d36c7887253c32e268ea8",
+    "timestamp": 1734686759,
+    "metadata_file_sha256": "0d1d6d8d63f384345ffb686a5f23bf381f547820d930c75f569c7bdb4def920e",
+    "binary_sha256": "c3ec6ed43483822cea08eff21d677345cbc91941889cac729a45656dfdea04d2",
+    "binary_size": 321200,
+    "binary_mtime_utc": "2024-12-20T09:25:58.972305+00:00",
+    "binary_ctime_utc": "2026-06-07T04:25:16.489074+00:00",
+    "package_paths_entry": [
+      {
+        "_path": "bin/MCScanX",
+        "path_type": "hardlink",
+        "sha256": "c3ec6ed43483822cea08eff21d677345cbc91941889cac729a45656dfdea04d2",
+        "sha256_in_prefix": "c3ec6ed43483822cea08eff21d677345cbc91941889cac729a45656dfdea04d2",
+        "size_in_bytes": 321200
+      }
+    ],
+    "installation_history_events": [
+      {
+        "line": 126,
+        "transaction_header": "==> 2026-06-07 12:24:49 <==",
+        "package_event": "+https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/linux-64::mcscanx-1.0.0-h9948957_0"
+      }
+    ],
+    "evidence_boundary": "The historical invocation records the exact executable path. This recovery observed that path as Bioconda mcscanx 1.0.0 build h9948957_0; its binary SHA256 equals the package manifest, installation history and file ctime predate the run. No binary digest taken at execution time is available; the observed package identity is not mislabelled as a contemporaneous version output."
+  },
+  "result_file_checks": [
+    {
+      "relative_path": "blast/rso63_vs_tchin_official.tsv",
+      "bytes": 19471,
+      "sha256": "f3a2cdfc06a939a77d19c671ea09dda792dc66786f8a8c8db314e543bb768dc0",
+      "line_count": 325,
+      "mtime_utc": "2026-09-09T11:10:41.945049+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "blast/tchin_official_vs_rso.tsv",
+      "bytes": 10439,
+      "sha256": "04e5f61aac852aee3e4f1279a37d550602b8e7a337bd82c3f26e14cb6819e700",
+      "line_count": 151,
+      "mtime_utc": "2026-09-09T11:10:48.629258+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "mcscanx_official/rso_tch.collinearity",
+      "bytes": 1266195,
+      "sha256": "d263c283cbf7bde23859cd30dbb1c91533341f677fa73a8c08eb78533ab497d2",
+      "line_count": 23010,
+      "mtime_utc": "2026-09-09T11:12:22.312189+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "mcscanx_official/rso_tch.blast",
+      "bytes": 27119463,
+      "sha256": "d2bc017d8216737b760c3af84cf0f0e1c23ec4fd954d5f107b51e00acaf08842",
+      "line_count": 353265,
+      "mtime_utc": "2026-09-09T11:12:15.907989+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "mcscanx_official/rso_tch_diamond.stderr.log",
+      "bytes": 20499,
+      "sha256": "10fd0209b9ffe5e9910e3e546c9f451ec0ec60c8b99373aee3409247ad86e274",
+      "line_count": 487,
+      "mtime_utc": "2026-09-09T11:12:15.911989+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "ref/Tchinensis.official_per_gene.faa",
+      "bytes": 11983187,
+      "sha256": "1b9cf0c2de14db7f9db04a004054688aebd357583fd67a44a002f4b6c7c34a38",
+      "line_count": 214545,
+      "mtime_utc": "2026-09-09T11:10:01.975798+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "ref/rso_primary63_queries.faa",
+      "bytes": 12117,
+      "sha256": "b2d24374321823f2d3892af8b9d7b2d344ed545ef0a3eff9ad45a8f3b4754e81",
+      "line_count": 213,
+      "mtime_utc": "2026-09-09T10:30:09.716950+00:00",
+      "matches_original_local_v2_snapshot": true
+    },
+    {
+      "relative_path": "blast/tchin_official_reverse_queries.faa",
+      "bytes": 6608,
+      "sha256": "cd39b93f3bac394895d28425ddd5cb0777493f9e72a0f7d0c2b6eaa1698fcc91",
+      "line_count": 129,
+      "mtime_utc": "2026-09-09T11:10:48.317248+00:00",
+      "matches_original_local_v2_snapshot": true
+    }
+  ],
+  "recovered_utc": "2026-09-09T12:15:11.120385+00:00",
+  "publication_note": "Scientific call/return excerpts only; project and software prefixes replaced with documented placeholders. Full conversations, API configuration and shell history are not included. Historical calls were read, not executed during recovery."
+}
