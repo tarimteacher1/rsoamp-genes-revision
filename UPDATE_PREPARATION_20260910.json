@@ -1,0 +1,19 @@
+{
+  "preparation_status": "PASS",
+  "baseline_commit": "bcff5174fb6b9531363236076ebfaf3e7a622eb2",
+  "files_in_full_bundle": 154,
+  "python_files_parsed": 11,
+  "versions": {
+    "biopython": "1.87",
+    "openpyxl": "3.1.5",
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.3"
+  },
+  "full_bundle_sha256": "b07c82d4682018bf22b0f5b41b66660561787e894a41c5b6fc95d088bdadcabb",
+  "full_bundle_bytes": 33104911,
+  "code_bundle_sha256": "fa9d82d96dd18945e98b9ff9cfd3b6f09cd4da188db9cf599edfe26e17c40d90",
+  "source_entries": 76,
+  "numerical_changes": "none; S21 scope wording clarified",
+  "privacy_changes": "private execution prefixes normalized; manuscripts and correspondence excluded",
+  "module_checks": "see REPRODUCTION_CHECKS_20260910.json after execution"
+}

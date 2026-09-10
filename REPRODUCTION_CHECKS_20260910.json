@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "bundle_manifest": "153 distributed files verified before execution",
+  "entry_points": {
+    "S10": "analyze_restoration.py",
+    "S11": "reproduce.py"
+  },
+  "exit_codes": {
+    "S10": 0,
+    "S11": 0
+  },
+  "tables": [
+    {
+      "table": "S51_Physicochemical",
+      "rows": 73,
+      "common_columns": 13,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S52_PhyschemSummary",
+      "rows": 32,
+      "common_columns": 6,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S53_DuplicationModes",
+      "rows": 73,
+      "common_columns": 11,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S54_DuplicationSummary",
+      "rows": 24,
+      "common_columns": 5,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S55_IntraspeciesAnchors",
+      "rows": 7,
+      "common_columns": 15,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S56_nsLTP_Framework",
+      "rows": 40,
+      "common_columns": 23,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S57_Arabidopsis_anchors",
+      "rows": 26,
+      "common_columns": 20,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S58_Arabidopsis_scope",
+      "rows": 73,
+      "common_columns": 6,
+      "mismatches": [],
+      "pass": true
+    },
+    {
+      "table": "S59_Comparative_links",
+      "rows": 73,
+      "common_columns": 9,
+      "mismatches": [],
+      "pass": true
+    }
+  ],
+  "upstream_DIAMOND_MCScanX_rerun": false,
+  "figure_8_and_atlas_regenerated": true,
+  "private_paths_normalized": true,
+  "scientific_numbers_changed_by_publication": false
+}

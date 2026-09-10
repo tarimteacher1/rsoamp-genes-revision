@@ -1,4 +1,4 @@
-> **Latest supplement (10 September 2026):** [Files S10–S11 and consolidated Tables S1–S59](https://github.com/tarimteacher1/rsoamp-genes-revision/releases/tag/revision-20260910) add the characterization/duplication evidence and restored Arabidopsis comparison/current Figure 8. [Scope and treatment-source clarification](REVISION_SUPPLEMENT_20260910.md) distinguishes the conflicting published photoperiods; Table S25 has been corrected. Use this supplement together with the fixed 9 September release and the 14-pattern promoter amendment below.
+**Latest revision update (2026-09-10):** [Files S10/S11, current Tables S1–S59 and current figures](REVISION_UPDATE_20260910.md) complete the added characterization and retained Arabidopsis comparison. Use this update together with the preceding fixed release and the 14-pattern promoter amendment.
 
 > **Latest author figure formats (2026-09-09):** [Final Figure 3 and Figure 7](AUTHOR_FIGURE_UPDATE_20260909.md) provides the final author PDF/PNG/outlined-SVG layouts. This presentation-only update leaves the [14-pattern promoter amendment](PROMOTER14_UPDATE_20260909.md) and all numerical results unchanged.
 
