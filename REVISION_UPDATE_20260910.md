@@ -5,7 +5,9 @@ Download the [10 September update release](https://github.com/tarimteacher1/rsoa
 - Full new source/evidence bundle: `RsoAMP_revision_additions_20260910.zip` in the release assets.
 - [New analytical code](RsoAMP_added_code_20260910.zip); data are in the full bundle.
 - [Current Supplementary Tables S1–S59](Supplementary_Tables_S1-S59_20260910.xlsx).
-- [Source-to-public mapping](SOURCE_TO_PUBLIC_20260910.tsv), [full bundle content checksums](ADDITION_CONTENTS_SHA256_20260910.tsv), and [download checksums](RELEASE_SHA256_20260910.tsv).
+- [Source-to-public mapping](SOURCE_TO_PUBLIC_20260910.tsv), [full bundle content checksums](ADDITION_CONTENTS_SHA256_20260910.tsv), and [merged download checksums](MERGED_RELEASE_SHA256_20260910.tsv).
+
+The final workbook combines the S21 input clarification with the [S25 treatment-source correction](REVISION_SUPPLEMENT_20260910.md). In the release assets, select `Supplementary_Tables_S1-S59_merged_20260910.xlsx` or the workbook inside `RsoAMP_revision_additions_20260910.zip`. The initially uploaded non-merged workbook and its original release checksum file are retained as earlier records; they do not supersede the merged workbook. Standalone File S10 and S11 assets remain applicable.
 
 Files S10 and S11 correspond to Tables S51–S56 and S57–S59 respectively. S10 covers physicochemical properties, duplication modes, seven within-species candidate anchor pairs and nsLTP structural descriptors. S11 retains the Arabidopsis comparison (26 primary candidate anchors; 22 Rso members and 22 Arabidopsis loci), integrates it with Tamarix in Figure 8, and provides all 26 Arabidopsis neighborhoods. Thirteen Rso members have links to both comparators. Current author PDFs and captions accompany the full bundle.
 

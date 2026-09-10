@@ -1,7 +1,8 @@
 {
   "preparation_status": "PASS",
-  "baseline_commit": "bcff5174fb6b9531363236076ebfaf3e7a622eb2",
-  "files_in_full_bundle": 154,
+  "baseline_commit": "d07bb3fc4354e1845f8d96a3115f9ffaafe929db",
+  "concurrent_correction_commit": "ca3c1cae462fb110dfceb3dc55d59a9a582bad70",
+  "files_in_full_bundle": 155,
   "python_files_parsed": 11,
   "versions": {
     "biopython": "1.87",
@@ -9,11 +10,11 @@
     "matplotlib": "3.10.8",
     "numpy": "2.4.3"
   },
-  "full_bundle_sha256": "b07c82d4682018bf22b0f5b41b66660561787e894a41c5b6fc95d088bdadcabb",
-  "full_bundle_bytes": 33104911,
-  "code_bundle_sha256": "fa9d82d96dd18945e98b9ff9cfd3b6f09cd4da188db9cf599edfe26e17c40d90",
+  "full_bundle_sha256": "423e4d7cfbe1b4182f318dc216ad8dd89ec43dd744b261a3fceb63361c3500da",
+  "full_bundle_bytes": 33108074,
+  "code_bundle_sha256": "9da806cf60ed72cc43ed97c9e2475e5672d5a23ec4b20eece475b972c3a42db0",
   "source_entries": 76,
-  "numerical_changes": "none; S21 scope wording clarified",
+  "analysis_result_changes": "none; S21 scope wording and S25 source attribution clarified",
   "privacy_changes": "private execution prefixes normalized; manuscripts and correspondence excluded",
   "module_checks": "see REPRODUCTION_CHECKS_20260910.json after execution"
 }

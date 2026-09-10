@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "bundle_manifest": "153 distributed files verified before execution",
+  "bundle_manifest": "154 distributed files verified after the S21/S25 merge",
   "entry_points": {
     "S10": "analyze_restoration.py",
     "S11": "reproduce.py"
@@ -77,5 +77,7 @@
   "upstream_DIAMOND_MCScanX_rerun": false,
   "figure_8_and_atlas_regenerated": true,
   "private_paths_normalized": true,
-  "scientific_numbers_changed_by_publication": false
+  "scientific_numbers_changed_by_publication": false,
+  "post_reproduction_merge": "S21 scope wording and S25 source attribution merged; reproduction scripts and S51–S59 numerical results unchanged.",
+  "full_bundle_sha256": "423e4d7cfbe1b4182f318dc216ad8dd89ec43dd744b261a3fceb63361c3500da"
 }
